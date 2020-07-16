@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Services from './components/ServiceComponent';
+import Providers from './components/ProvidersComponent';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+
+  state = { selectedService: null };
+
+  handleSelectedService = id => {
+    this.setState({ selectedService: id });
+    this.child.current.handleSelectedService(id);
+  };
+
+  constructor(props) {
+    super(props);
+    this.child = React.createRef();
+  }
+
+  onClick = () => {
+    this.child.current.handleSelectedService();
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Services selectedService={this.handleSelectedService}></Services>
+        <Providers ref={this.child}></Providers>
+      </div>
+    );
+  }
 }
 
-export default App;
