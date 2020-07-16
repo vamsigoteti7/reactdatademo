@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Services from './components/ServiceComponent';
 import Providers from './components/ProvidersComponent';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class App extends React.Component {
 

@@ -43,7 +43,7 @@ export default class Providers extends React.Component {
 
         if (schedules !== undefined) {
 
-           let filterBender = data => {
+            let filterBender = data => {
                 var sch = schedules.filter(s => s.providerId === data.id)
                 if (sch.length === 0) return false;
                 return true;
@@ -56,12 +56,33 @@ export default class Providers extends React.Component {
 
     render() {
         return (
-            <ul>
+            <div>
                 <h1>Providers</h1>
-                {this.state.providers.map((user, index) =>
-                    <li key={index}>{user.id}</li>
+                {this.state.providers.map((user, index) => {
+                    return(
+                    <div key={index}>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <img alt='new' height="100" width="200" src={user.attributes['profile-image'] === '' ? null : user.attributes['profile-image']} />
+                                </div>
+                                <div class="col-sm">
+                                    <div class="container">
+                                        <div class="row">
+                                            {user.id}
+                                        </div>
+                                        <div class="row">
+                                            { user.attributes.subspecialties !== null ? user.attributes.subspecialties.map(t=>(<div class="container"><div class="row">{t}</div></div>)) : null} 
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>);
+                }
                 )}
-            </ul>
+            </div>
         )
     }
 }
