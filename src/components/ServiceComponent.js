@@ -66,12 +66,12 @@ export default class Services extends React.Component {
     render() {
         return (
             <div>
-                
-                    <h1>Services</h1>
-                    {this.state.persons.map((user, index) =>
-                        <li key={index} onClick={() => this.props.selectedService(user.attributes.name)}>{user.id}</li>
-                    )}
-                
+
+                <h1>Services</h1>
+                {this.state.persons.map((user, index) =>
+                    <li key={index} onClick={() => this.props.selectedService(user.attributes.name)}>{user.id}</li>
+                )}
+
                 {/* <div>
                     {links.map(link => {
                         return (

@@ -1,34 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Services from './components/ServiceComponent';
-import Providers from './components/ProvidersComponent';
+import DataContainer from './container/DataContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class App extends React.Component {
-
-  state = { selectedService: null };
-
-  handleSelectedService = id => {
-    this.setState({ selectedService: id });
-    this.child.current.handleSelectedService(id);
-  };
-
-  constructor(props) {
-    super(props);
-    this.child = React.createRef();
-  }
-
-  onClick = () => {
-    this.child.current.handleSelectedService();
-  };
+class App extends React.Component {
 
   render() {
+    let routes = (
+      <Switch>
+        <Route path="/" exact component={DataContainer} />
+      </Switch>
+    );
     return (
-      <div className="App">
-        <Services selectedService={this.handleSelectedService}></Services>
-        <Providers ref={this.child}></Providers>
-      </div>
+      <div> {routes}</div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
